@@ -9,5 +9,11 @@ class PatientGeneralInfo(models.Model):
     contactNumber = models.CharField(max_length=20)
     emailId = models.EmailField()
     address = models.CharField(max_length = 200)
+class HealthInfo(models.Model):
+    patient = models.OneToOneField(PatientGeneralInfo, on_delete=models.CASCADE)
+    bloodGroup = models.CharField(max_length=20)
+    symptoms = models.TextField()
+    disease = models.CharField(max_length=50)
+    treatment = models.TextField()
     
     
