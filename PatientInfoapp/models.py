@@ -13,7 +13,13 @@ class patient_generalinfo(models.Model):
 
 class patient_healthinfo(models.Model):
     patient = models.OneToOneField(patient_generalinfo, on_delete=models.CASCADE)
-    bloodGroup = models.CharField(max_length=20)
+    blood_group = models.CharField(max_length=20)
+    height = models.IntegerField()
+    weight = models.IntegerField()
+    blood_pressure = models.CharField(max_length=30)
     symptoms = models.TextField()
-    disease = models.CharField(max_length=50)
+    disease = models.CharField(max_length=200)
     treatment = models.TextField()
+    diagnosis_date = models.DateField()
+    doctor_name = models.CharField(max_length=100)
+
