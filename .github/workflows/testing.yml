@@ -1,10 +1,8 @@
-name: Django CI
-
+name: Tests
+#Workflow gets triggered when a pull request is created.
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
 
 jobs:
   build:
@@ -28,3 +26,17 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Coverage report
+      run: |
+        pip install coverage
+        coverage run manage.py test
+        coverage report
+        coverage html=coverage.html
+    - name: Upload test results in HTML format
+      # Upload the HTML test results as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Coverage Report HTML
+        path: coverage.html   
+    
+      
