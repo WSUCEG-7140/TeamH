@@ -69,4 +69,9 @@ def edit_patient(request, pk):
             
             # Redirect the user to the "home" view
             return redirect("home")
+        else:
+        # If the request method is not POST, display the forms with the existing data
+        # Create instances of GeneralInfoForm and HealthInfoForm with the patient instances
+        general_form = GeneralInfoForm(instance=patient)
+        health_form = HealthInfoForm(instance=health_info)    
     
