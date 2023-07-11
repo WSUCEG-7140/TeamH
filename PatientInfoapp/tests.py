@@ -8,7 +8,7 @@ class PatientAppTestCase(TestCase):
         self.general_info = {
             "first_name": "Sindhu",
             "last_name": "Kari",
-            "age": 21,
+            "age": 20,
             "gender": "Female",
             "phone_number": "178463934",
             "email": "kari.sindhu@gmail.com",
@@ -37,13 +37,13 @@ class PatientAppTestCase(TestCase):
     def test_patient_generalinfo(self):
         self.assertEqual(self.patient.first_name, 'Sindhu')
         self.assertEqual(self.patient.last_name, 'Kari')
-        self.assertEqual(self.patient.age, 21)
+        self.assertEqual(self.patient.age, 20)
         self.assertEqual(self.patient.gender, 'Female')
         self.assertEqual(self.patient.phone_number, '178463934')
         self.assertEqual(self.patient.email, 'kari.sindhu@gmail.com')
         self.assertEqual(self.patient.address, 'Province,Cloveridge ct.')   
 
-    #test case for patient_healthinfo attributes 
+    #test case for patient_healthinfo attributes
     def test_patient_healthinfo(self):
         self.assertEqual(self.health.patient, self.general_info)
         self.assertEqual(self.health.blood_group, 'O+')
