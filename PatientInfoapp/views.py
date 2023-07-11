@@ -47,3 +47,13 @@ def add_patient(request):
             "patientApp/add_patient.html",
             {"general_form": general_form, "health_form": health_form},
     )
+
+
+def edit_patient(request, pk):
+    # Retrieve the patient_generalinfo object with the given pk (primary key)
+    patient = patient_generalinfo.objects.get(pk=pk)
+    
+    # Retrieve the patient_healthinfo related to the patient
+    health_info = patient.patient_healthinfo
+    
+    
