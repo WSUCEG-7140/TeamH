@@ -47,3 +47,37 @@ def add_patient(request):
             "patientApp/add_patient.html",
             {"general_form": general_form, "health_form": health_form},
     )
+
+
+def edit_patient(request, pk):
+    # Retrieve the patient_generalinfo object with the given pk (primary key)
+    patient = patient_generalinfo.objects.get(pk=pk)
+    
+    # Retrieve the patient_healthinfo related to the patient
+    health_info = patient.patient_healthinfo
+    if request.method == "POST":
+        # If the request method is POST, process the form data
+        # Create instances of GeneralInfoForm and HealthInfoForm with the POST data and patient instances
+        general_form = GeneralInfoForm(request.POST, instance=patient)
+        health_form = HealthInfoForm(request.POST, instance=health_info)
+        
+        # Check if both general_form and health_form are valid
+        if general_form.is_valid() and health_form.is_valid():
+            # Save the updated data from the forms
+            general_form.save()
+            health_form.save()
+            
+            # Redirect the user to the "home" view
+            return redirect("home")
+    else:
+        # If the request method is not POST, display the forms with the existing data
+        # Create instances of GeneralInfoForm and HealthInfoForm with the patient instances
+        general_form = GeneralInfoForm(instance=patient)
+        health_form = HealthInfoForm(instance=health_info)    
+    
+    # Render the "edit_patient.html" template with the forms and patient as context data
+    return render(
+        request,
+        "patientApp/edit_patient.html",
+        {"general_form": general_form, "health_form": health_form, "patient": patient},
+    )
