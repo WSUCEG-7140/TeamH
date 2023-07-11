@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404
 from .models import patient_generalinfo, patient_healthinfo
+from .forms import GeneralInfoForm, HealthInfoForm
 from django.db.models import Q
 
 def patient_detail(request, pk):
@@ -22,3 +23,27 @@ def home(request):
         patients = patient_generalinfo.objects.all()
     # Render the "home.html" template with the patients queryset as context data
     return render(request, "PatientInfoapp/home.html", {"patients": patients})
+
+def add_patient(request):
+    if request.method == "POST":
+         # Initialize GeneralInfoForm with POST data
+        general_form = GeneralInfoForm(request.POST)
+        # Initialize HealthInfoForm with POST data
+        health_form = HealthInfoForm(request.POST)
+        # Check if both forms are valid
+        if general_form.is_valid() and health_form.is_valid():
+            general_info = general_form.save()
+            health_info = health_form.save(commit=False)
+            health_info.patient = general_info
+            health_info.save()
+            return redirect("home")
+        # Check else condition is met
+        else:
+            general_form = GeneralInfoForm()
+            health_form = HealthInfoForm()
+        # Render the "add_patient.html" template and also pass the form instances as context variables
+        return render(
+            request,
+            "patientApp/add_patient.html",
+            {"general_form": general_form, "health_form": health_form},
+    )
