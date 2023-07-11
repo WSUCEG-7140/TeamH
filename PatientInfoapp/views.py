@@ -37,3 +37,13 @@ def add_patient(request):
             health_info.patient = general_info
             health_info.save()
             return redirect("home")
+        # Check else condition is met
+        else:
+            general_form = GeneralInfoForm()
+            health_form = HealthInfoForm()
+        # Render the "add_patient.html" template and also pass the form instances as context variables
+        return render(
+            request,
+            "patientApp/add_patient.html",
+            {"general_form": general_form, "health_form": health_form},
+    )
