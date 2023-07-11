@@ -45,7 +45,7 @@ class PatientAppTestCase(TestCase):
 
     #test case for patient_healthinfo attributes
     def test_patient_healthinfo(self):
-        self.assertEqual(self.health.patient, self.general_info)
+        self.assertEqual(self.health.patient, self.patient)
         self.assertEqual(self.health.blood_group, 'O+')
         self.assertEqual(self.health.height, 175)
         self.assertEqual(self.health.weight, 50)
