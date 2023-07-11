@@ -41,7 +41,20 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(self.patient.gender, 'Female')
         self.assertEqual(self.patient.phone_number, '178463934')
         self.assertEqual(self.patient.email, 'kari.sindhu@gmail.com')
-        self.assertEqual(self.patient.address, 'Province,Cloveridge ct.')    
+        self.assertEqual(self.patient.address, 'Province,Cloveridge ct.')   
+
+    #test case for patient_healthinfo attributes 
+    def test_patient_healthinfo(self):
+        self.assertEqual(self.health.patient, self.general_info)
+        self.assertEqual(self.health.blood_group, 'O+')
+        self.assertEqual(self.health.height, 175)
+        self.assertEqual(self.health.weight, 50)
+        self.assertEqual(self.health.blood_pressure, '120/80')
+        self.assertEqual(self.health.symptoms, 'Fever, cold')
+        self.assertEqual(self.health.disease, 'Common cold')
+        self.assertEqual(self.health.treatment, 'take rest')
+        self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
+        self.assertEqual(self.health.doctor_name, 'Dr. Srikanth')    
 
 
 
