@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404
 from .models import patient_generalinfo, patient_healthinfo
+from .forms import GeneralInfoForm, HealthInfoForm
 from django.db.models import Q
 
 def patient_detail(request, pk):
