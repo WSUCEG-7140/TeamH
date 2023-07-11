@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import patient_generalinfo, patient_healthinfo
+from django.urls import reverse
 
 #This class includes all the test methods
 class PatientAppTestCase(TestCase):
@@ -54,7 +55,18 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(self.health.disease, 'Common cold')
         self.assertEqual(self.health.treatment, 'take rest')
         self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
-        self.assertEqual(self.health.doctor_name, 'Dr. Srikanth')    
+        self.assertEqual(self.health.doctor_name, 'Dr. Srikanth')  
+
+    #unit test for a Django view that displays patient details
+    def test_view_patient_details(self):
+        # Create the URL for the patient detail view
+        url = reverse("patient_detail", args=[self.patient.pk])
+        # To the URL, send a GET request
+        response = self.client.get(url)
+        # Verify that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
+        
 
 
 
