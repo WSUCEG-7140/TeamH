@@ -10,7 +10,7 @@ class PatientAppTestCase(TestCase):
             "last_name": "Kari",
             "age": 21,
             "gender": "Female",
-            "phone_no": "178463934",
+            "phone_number": "178463934",
             "email": "kari.sindhu@gmail.com",
             "address": "Province,Cloveridge ct.",
         }
