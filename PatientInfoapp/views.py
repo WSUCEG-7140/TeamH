@@ -44,7 +44,7 @@ def add_patient(request):
         # Render the "add_patient.html" template and also pass the form instances as context variables
         return render(
             request,
-            "patientApp/add_patient.html",
+            "PatientInfoapp/add_patient.html",
             {"general_form": general_form, "health_form": health_form},
     )
 
@@ -78,6 +78,16 @@ def edit_patient(request, pk):
     # Render the "edit_patient.html" template with the forms and patient as context data
     return render(
         request,
-        "patientApp/edit_patient.html",
+        "PatientInfoapp/edit_patient.html",
         {"general_form": general_form, "health_form": health_form, "patient": patient},
     )
+
+def delete_patient(request, pk):
+    # Retrieve the patient_generalinfo object with the given pk (primary key)
+    patient = patient_generalinfo.objects.get(pk=pk)
+    
+    # Delete the patient object from the database
+    patient.delete()
+    
+    # Redirect the user to the "home" view
+    return redirect("home")
