@@ -23,3 +23,4 @@ class patient_healthinfo(models.Model):
     diagnosis_date = models.DateField()
     doctor_name = models.CharField(max_length=100)
 
+
