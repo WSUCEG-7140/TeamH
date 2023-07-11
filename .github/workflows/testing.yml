@@ -31,12 +31,12 @@ jobs:
         pip install coverage
         coverage run manage.py test
         coverage report
-        coverage html=coverage.html
+        coverage html
     - name: Upload test results in HTML format
       # Upload the HTML test results as an artifact
       uses: actions/upload-artifact@v2
       with:
         name: Coverage Report HTML
-        path: coverage.html   
+        path: htmlcov/  
     
       
