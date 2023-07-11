@@ -75,3 +75,9 @@ def edit_patient(request, pk):
         general_form = GeneralInfoForm(instance=patient)
         health_form = HealthInfoForm(instance=health_info)    
     
+    # Render the "edit_patient.html" template with the forms and patient as context data
+    return render(
+        request,
+        "patientApp/edit_patient.html",
+        {"general_form": general_form, "health_form": health_form, "patient": patient},
+    )
