@@ -65,6 +65,21 @@ class PatientAppTestCase(TestCase):
         response = self.client.get(url)
         # Verify that the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
+        
+        # Verify that the patient's details are displayed correctly
+        self.assertContains(response, self.general_info["first_name"])
+        self.assertContains(response, self.general_info["last_name"])
+        self.assertContains(response, self.general_info["age"])
+        self.assertContains(response, self.general_info["gender"])
+        self.assertContains(response, self.general_info["phone_number"])
+        self.assertContains(response, self.general_info["email"])
+        self.assertContains(response, self.general_info["address"])
+        self.assertContains(response, self.health_info["blood_group"])  
+        self.assertContains(response, self.general_info["symptoms"])
+        self.assertContains(response, self.general_info["disease"])
+        self.assertContains(response, self.general_info["treatment"])
+        self.assertContains(response, self.general_info["diagnosis_date"])
+        self.assertContains(response, self.general_info["doctor_name"])
 
         
 
