@@ -32,7 +32,16 @@ class PatientAppTestCase(TestCase):
         self.health_info["patient"] = self.patient
         #creating an instance for patient_healthinfo model by using above test data
         self.health = patient_healthinfo.objects.create(**self.health_info)
-        
+
+    #test case for patient_generalinfo attributes    
+    def test_patient_generalinfo(self):
+        self.assertEqual(self.patient.first_name, 'Sindhu')
+        self.assertEqual(self.patient.last_name, 'Kari')
+        self.assertEqual(self.patient.age, 21)
+        self.assertEqual(self.patient.gender, 'Female')
+        self.assertEqual(self.patient.phone_number, '178463934')
+        self.assertEqual(self.patient.email, 'kari.sindhu@gmail.com')
+        self.assertEqual(self.patient.address, 'Province,Cloveridge ct.')    
 
 
 
