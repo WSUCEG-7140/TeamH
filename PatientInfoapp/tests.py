@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import patient_generalinfo, patient_healthinfo
 
-# Create your tests here.
+#This class includes all the test methods
 class PatientAppTestCase(TestCase):
     def setUp(self):
         self.general_info = {
