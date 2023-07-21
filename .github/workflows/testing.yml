@@ -38,5 +38,20 @@ jobs:
       with:
         name: Coverage Report HTML
         path: htmlcov/  
+    - name: Install Doxygen (Ubuntu)
+      # Install Doxygen on Ubuntu
+      run: sudo apt-get install -y doxygen
+    - name: Generate Documentation
+      # Generate the documentation using doxygen
+      run: doxygen Doxyfile
+    
+    - name: Upload Documentation
+      # Upload the documentation as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Documentation
+        path: html/
+
+          
     
       
