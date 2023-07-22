@@ -78,6 +78,10 @@
                     <td>{{ patient.gender }}</td>
                     <td>{{ patient.email }}</td>
                     <td>{{ patient.patient_healthinfo.blood_group }}</td>
+                    <td>
+                        <a class="button-link btn btn-success" href="{% url 'edit_patient' pk=patient.pk %}">Edit</a>
+                        
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
