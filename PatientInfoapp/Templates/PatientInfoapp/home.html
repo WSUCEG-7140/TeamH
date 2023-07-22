@@ -79,6 +79,11 @@
                     <td>{{ patient.email }}</td>
                     <td>{{ patient.patient_healthinfo.blood_group }}</td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">No patients found.</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
