@@ -14,7 +14,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'homelogo.png' %}" alt="logo" width="48">
-                </a>
+                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
@@ -51,7 +51,6 @@
                         <button class="btn btn-outline-secondary" type="submit">Search</button>
                     </div>
                 </form>
-          
             </div>
         </div>
     </div>
@@ -69,6 +68,18 @@
                     <th>Actions</th>
                 </tr>
             </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <td class="clickable-row"><a href="{% url 'patient_detail' pk=patient.pk %}">{{ forloop.counter }}</a></td>
+                    <td>{{ patient.first_name }}</td>
+                    <td>{{ patient.last_name }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.gender }}</td>
+                    <td>{{ patient.email }}</td>
+                    <td>{{ patient.patient_healthinfo.blood_group }}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </body>
