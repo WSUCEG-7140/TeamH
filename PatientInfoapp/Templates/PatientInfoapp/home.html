@@ -44,6 +44,14 @@
             <div class="col-12 col-md-6 mb-2">
                 <a class="button-link btn btn-primary" href="{% url 'add_patient' %}">Add Patient</a>
             </div>
+            <div class="col-12 col-md-6 d-flex justify-content-end">
+                <form method="GET" action="{% url 'home' %}">
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="search_email" placeholder="Search by Email" value="{{ request.GET.search_email }}">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>
