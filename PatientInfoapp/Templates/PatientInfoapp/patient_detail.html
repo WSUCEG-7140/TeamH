@@ -75,5 +75,47 @@
             <th>Address</th>
             <td>{{ patient.address }}</td>
         </tr>
+        <!-- Patient health information -->
+        <tr>
+            <th>Blood Group</th>
+            <td>{{ patient.patient_healthinfo.blood_group }}</td>
+        </tr>
+        <tr>
+            <th>Height</th>
+            <td>{{ patient.patient_healthinfo.height }}</td>
+        </tr>
+        <tr>
+            <th>Weight</th>
+            <td>{{ patient.patient_healthinfo.weight }}</td>
+        </tr>
+        <tr>
+            <th>Blood Pressure</th>
+            <td>{{ patient.patient_healthinfo.blood_pressure }}</td>
+        </tr>
+        <tr>
+            <th>Symptoms</th>
+            <td>{{ patient.patient_healthinfo.symptoms }}</td>
+        </tr>
+        <tr>
+            <th>Disease</th>
+            <td>{{ patient.patient_healthinfo.disease }}</td>
+        </tr>
+        <tr>
+            <th>Treatment</th>
+            <td>{{ patient.patient_healthinfo.treatment }}</td>
+        </tr>
+        <tr>
+            <th>Diagnosis Date</th>
+            <td>{{ patient.patient_healthinfo.diagnosis_date }}</td>
+        </tr>
+        <tr>
+            <th>Doctor Name</th>
+            <td>{{ patient.patient_healthinfo.doctor_name }}</td>
+        </tr>
+    </table>
+
+    <!-- Link to go back to the Patient List page -->
+    <br>
+    <a href="{% url 'home' %}">Back to Patient List</a>
 </body>
 </html>
