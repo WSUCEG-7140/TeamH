@@ -81,6 +81,7 @@
                     <td>
                         <a class="button-link btn btn-success" href="{% url 'edit_patient' pk=patient.pk %}">Edit</a>
                         <a class="button-link btn btn-primary" href="{% url 'patient_detail' pk=patient.pk %}">View</a>
+                        <a class="button-link btn btn-danger" href="{% url 'delete_patient' pk=patient.pk %}">Delete</a>
                     </td>
                 </tr>
                 {% empty %}
