@@ -33,4 +33,23 @@
             </div>
         </nav>
     </header>
+    <div class="container root">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-container mt-2" style="border-radius:10px; background-color: rgba(128,128,128,0.05); padding: 2em">
+                    <h1 class="head text-center">Add Patient</h1>
+                    <form class="ml-3"  method="post">
+                        {% csrf_token %}
+                        {{ general_form.as_p }}
+                        {{ health_form.as_p }}
+                        <button type="submit" class="btn btn-primary mt-3">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 </body>    
