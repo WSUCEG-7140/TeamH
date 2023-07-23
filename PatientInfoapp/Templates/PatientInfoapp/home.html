@@ -80,7 +80,7 @@
                     <td>{{ patient.patient_healthinfo.blood_group }}</td>
                     <td>
                         <a class="button-link btn btn-success" href="{% url 'edit_patient' pk=patient.pk %}">Edit</a>
-                        
+                        <a class="button-link btn btn-primary" href="{% url 'patient_detail' pk=patient.pk %}">View</a>
                     </td>
                 </tr>
                 {% empty %}
