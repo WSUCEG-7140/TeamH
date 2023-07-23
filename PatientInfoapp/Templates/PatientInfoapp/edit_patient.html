@@ -34,5 +34,12 @@
             </div>
         </nav>
     </header>
-
+    <h1>Edit Patient</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ general_form.as_p }}
+        {{ health_form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Save">
+    </form>
+</body>
 </html>
