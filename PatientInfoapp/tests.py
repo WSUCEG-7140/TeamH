@@ -82,7 +82,22 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(patient_healthinfo.objects.count(), 2)   # Check the count of health info objects
 
         # Verify that the patient's information is listed on the home page
-        url = reverse("patient_detail")
+        url = reverse("patient_detail",args=[self.patient.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)  # Expecting a successful response (status code 200)
-    
+         
+        self.assertContains(response, self.general_info["first_name"])
+        self.assertContains(response, self.general_info["last_name"])
+        self.assertContains(response, self.general_info["age"])
+        self.assertContains(response, self.general_info["gender"])
+        self.assertContains(response, self.general_info["phone_number"])
+        self.assertContains(response, self.general_info["email"])
+        self.assertContains(response, self.general_info["address"])
+        self.assertContains(response, self.health_info["blood_group"])
+        self.assertContains(response, self.health_info["height"])
+        self.assertContains(response, self.health_info["blood_pressure"])
+        self.assertContains(response, self.health_info["symptoms"])
+        self.assertContains(response, self.health_info["disease"])
+        self.assertContains(response, self.health_info["treatment"])
+        self.assertContains(response, self.health_info["diagnosis_date"])
+        self.assertContains(response, self.health_info["doctor_name"])
