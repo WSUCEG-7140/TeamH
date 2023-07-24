@@ -1,0 +1,48 @@
+# Django project directories and files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py~
+*.sqlite3
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# Environment variables and secret files
+.env
+*.env
+*.env.*
+*.secret
+
+# Development and deployment files
+*.pyc
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*.bak
+*.db
+*.db-journal
+*.pyc
+*.log
+
+# Editor-specific files
+.vscode/
+*.code-workspace
+/.vscode/settings.json
+/.vscode/*.code-snippets
+
+# Compiled Python files
+*.pyc
+
+# Compiled C extensions
+*.so
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
