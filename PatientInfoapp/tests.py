@@ -73,5 +73,16 @@ class PatientAppTestCase(TestCase):
                 **self.health_info,   # Patient's health information (e.g., blood group, weight, blood pressure)
             },
     )
-   
-   
+        # Expecting a redirect after successful submission (status code 302)
+        self.assertEqual(response.status_code, 302)
+
+        # Verify that the patient is added successfully to the database
+        # Assuming there is already one patient in the database
+        self.assertEqual(patient_generalinfo.objects.count(), 2)  # Check the count of general info objects
+        self.assertEqual(patient_healthinfo.objects.count(), 2)   # Check the count of health info objects
+
+        # Verify that the patient's information is listed on the home page
+        url = reverse("patient_detail")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)  # Expecting a successful response (status code 200)
+    
