@@ -43,9 +43,9 @@ def add_patient(request):
         health_form = HealthInfoForm()
         # Render the "add_patient.html" template and also pass the form instances as context variables
     return render(
-            request,
-            "PatientInfoapp/add_patient.html",
-            {"general_form": general_form, "health_form": health_form},
+        request,
+        "PatientInfoapp/add_patient.html",
+        {"general_form": general_form, "health_form": health_form},
     )
 
 
