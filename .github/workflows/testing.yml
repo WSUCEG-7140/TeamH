@@ -24,8 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt   
-    - name: Copy templates directory
-      run: cp -R PatientInfoapp/templates templates/
+    
     - name: Run Tests
       run: |
         python manage.py test
