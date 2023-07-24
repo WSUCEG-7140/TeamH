@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from .models import patient_generalinfo, patient_healthinfo
 
 #This class includes all the test methods
@@ -54,7 +55,49 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(self.health.disease, 'Common cold')
         self.assertEqual(self.health.treatment, 'take rest')
         self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
-        self.assertEqual(self.health.doctor_name, 'Dr. Srikanth')    
+        self.assertEqual(self.health.doctor_name, 'Dr. Srikanth') 
 
+    def test_add_patient(self):
+        # Get the URL for the "add_patient" view
+        url = reverse("add_patient")
+   
+        # Test accessing the view with a GET request
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)  # Expecting a successful response (status code 200)
+    
+        # Test submitting patient data via a POST request
+        response = self.client.post(
+            url,
+            data={
+                **self.general_info,  # Patient's general information (e.g., first name, last name, age)
+                **self.health_info,   # Patient's health information (e.g., blood group, weight, blood pressure)
+            },
+    )
+        # Expecting a redirect after successful submission (status code 302)
+        self.assertEqual(response.status_code, 302)
 
+        # Verify that the patient is added successfully to the database
+        # Assuming there is already one patient in the database
+        self.assertEqual(patient_generalinfo.objects.count(), 2)  # Check the count of general info objects
+        self.assertEqual(patient_healthinfo.objects.count(), 2)   # Check the count of health info objects
 
+        # Verify that the patient's information is listed on the home page
+        url = reverse("patient_detail",args=[self.patient.pk])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)  # Expecting a successful response (status code 200)
+         
+        self.assertContains(response, self.general_info["first_name"])
+        self.assertContains(response, self.general_info["last_name"])
+        self.assertContains(response, self.general_info["age"])
+        self.assertContains(response, self.general_info["gender"])
+        self.assertContains(response, self.general_info["phone_number"])
+        self.assertContains(response, self.general_info["email"])
+        self.assertContains(response, self.general_info["address"])
+        self.assertContains(response, self.health_info["blood_group"])
+        self.assertContains(response, self.health_info["height"])
+        self.assertContains(response, self.health_info["blood_pressure"])
+        self.assertContains(response, self.health_info["symptoms"])
+        self.assertContains(response, self.health_info["disease"])
+        self.assertContains(response, self.health_info["treatment"])
+        self.assertContains(response, self.health_info["diagnosis_date"])
+        self.assertContains(response, self.health_info["doctor_name"])

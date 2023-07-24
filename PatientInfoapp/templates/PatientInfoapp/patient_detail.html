@@ -106,7 +106,7 @@
         </tr>
         <tr>
             <th>Diagnosis Date</th>
-            <td>{{ patient.patient_healthinfo.diagnosis_date }}</td>
+            <td>{{ patient.patient_healthinfo.diagnosis_date|date:"Y-m-d" }}</td>
         </tr>
         <tr>
             <th>Doctor Name</th>
