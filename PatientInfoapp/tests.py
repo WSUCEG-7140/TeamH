@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from .models import patient_generalinfo, patient_healthinfo
 
 #This class includes all the test methods
@@ -55,6 +56,34 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(self.health.treatment, 'take rest')
         self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
         self.assertEqual(self.health.doctor_name, 'Dr. Srikanth')    
+    def test_add_patient(self):
+        url = reverse("add_patient")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.post(
+            url,
+            data={
+                **self.general_info,
+                **self.health_info,
+            },
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Check for redirect after successful submission
+
+        # Verify that the patient is added successfully
+        self.assertEqual(
+            patient_generalinfo.objects.count(), 2
+        )  # Assuming there is already one patient
+        self.assertEqual(patient_healthinfo.objects.count(), 2)
+
+        # Verify that the patient is listed on the home page
+        url = reverse("home")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.general_info["first_name"])
+        self.assertContains(response, self.general_info["last_name"])
 
 
 
