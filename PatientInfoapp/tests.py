@@ -264,6 +264,16 @@ class PatientAppTestCase(TestCase):
         
         # Verify that the response status code is 302 (Redirect) after successful submission
         self.assertEqual(response.status_code, 302)
+
+        # Verify that the patient's general information is updated correctly in the database
+        updated_patient = patient_generalinfo.objects.get(pk=self.patient.pk)
+        self.assertEqual(updated_patient.first_name, modified_general_info["first_name"])
+        self.assertEqual(updated_patient.last_name, modified_general_info["last_name"])
+        self.assertEqual(updated_patient.age, modified_general_info["age"])
+        self.assertEqual(updated_patient.gender, modified_general_info["gender"])
+        self.assertEqual(updated_patient.phone_number, modified_general_info["phone_number"])
+        self.assertEqual(updated_patient.email, modified_general_info["email"])
+        self.assertEqual(updated_patient.address, modified_general_info["address"])
         
 
 
