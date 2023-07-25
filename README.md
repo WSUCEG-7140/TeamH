@@ -1,6 +1,6 @@
 # Patient Record Management System
 
-Patient Record Management System developed using Django Framework and Html for frontend. This application is used to manage patient health records in an hospital.
+Patient Record Management System developed using Django Framework and Html for frontend. This application is used to manage patient health records in the hospital.
 
 # Features of Application
 1.	Adding new patient data into the database through webpage.
@@ -23,7 +23,7 @@ For running the Patient Record Management System application locally, follow the
 Running Application:
 -	Start the Python server:  py manage.py runserver
 
-# Technologies used in Apllication
+# Technologies used in Application
 1.	Backend:    Python, Django
 2.	Database:   SQLite
 3.  Frontend:   HTML, Bootstrap
