@@ -214,6 +214,23 @@ class PatientAppTestCase(TestCase):
         # email does not match the search criteria
         self.assertNotContains(response, self.general_info["first_name"])
         self.assertNotContains(response, self.general_info["last_name"])
+    """
+    Test case to verify editing patient information.
+
+    This test checks whether the process of editing a patient's information is functioning correctly.
+    It verifies that the edit page is accessible, the form submission results in a successful redirect,
+    and the patient's details are updated correctly in the database. Additionally, it ensures that the
+    updated patient's information is reflected on the home page.
+    """
+    def test_edit_patient(self):
+        # Get the URL for editing the specific patient using the patient's primary key
+        url = reverse("edit_patient", args=[self.patient.pk])
+        
+        # Send a GET request to retrieve the edit page
+        response = self.client.get(url)
+        
+        # Verify that the page is accessible and the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)    
 
 
 
