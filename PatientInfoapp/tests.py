@@ -320,7 +320,11 @@ class PatientAppTestCase(TestCase):
         
         # Verify that the response status code is 200 (OK), indicating a validation failure
         self.assertEqual(response.status_code, 200)
+        # Check that appropriate error messages are displayed for the invalid fields
 
+        # Assuming all fields are required, check if the response contains the error message
+        # "This field is required" for each invalid field
+        self.assertContains(response, "This field is required")
 
 
 
