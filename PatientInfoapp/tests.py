@@ -200,6 +200,11 @@ class PatientAppTestCase(TestCase):
         # Verify that the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
+         # Verify that only the patients with matching email addresses are displayed on the home page
+        self.assertContains(response, self.general_info["first_name"])
+        self.assertContains(response, self.general_info["last_name"])
+
+
        
 
 
