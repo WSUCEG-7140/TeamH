@@ -101,3 +101,21 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.health_info["treatment"])
         self.assertContains(response, self.health_info["diagnosis_date"])
         self.assertContains(response, self.health_info["doctor_name"])
+
+    
+    """
+    Test case to verify the view for displaying patient details.
+
+    This test checks whether the patient details view is accessible, and if the
+    patient's information is displayed correctly on the page.
+    """    
+    def test_view_patient_details(self):
+        # Get the URL for viewing the details of a specific patient using the patient's primary key
+        url = reverse("patient_detail", args=[self.patient.pk])
+    
+        # Send a GET request to retrieve the patient's details page
+        response = self.client.get(url)
+    
+        # Verify that the page is accessible and the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+        
