@@ -215,6 +215,98 @@ class PatientAppTestCase(TestCase):
         self.assertNotContains(response, self.general_info["first_name"])
         self.assertNotContains(response, self.general_info["last_name"])
 
+    """
+    Test case to verify editing patient information.
+
+    This test checks whether the process of editing a patient's information is functioning correctly.
+    It verifies that the edit page is accessible, the form submission results in a successful redirect,
+    and the patient's details are updated correctly in the database. Additionally, it ensures that the
+    updated patient's information is reflected on the home page.
+    """
+    def test_edit_patient(self):
+        # Get the URL for editing the specific patient using the patient's primary key
+        url = reverse("edit_patient", args=[self.patient.pk])
+        
+        # Send a GET request to retrieve the edit page
+        response = self.client.get(url)
+        
+        # Verify that the page is accessible and the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+        # Prepare modified general information and health information for the patient
+        modified_general_info = {
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "age": 35,
+        "gender": "Female",
+        "phone_number": "9876543210",
+        "email": "jane.smith@example.com",
+        "address": "456 Elm St",
+        }
+        modified_health_info = {
+        "blood_group": "B+",
+        "height": 170,
+        "weight": 65,
+        "blood_pressure": "130/85",
+        "symptoms": "Cough, sore throat",
+        "disease": "Flu",
+        "treatment": "Medication",
+        "diagnosis_date": "2023-07-11",
+        "doctor_name": "Dr. Johnson",
+        }
+
+        # Send a POST request with the modified information to update the patient's record
+        response = self.client.post(
+            url,
+            data={
+                **modified_general_info,
+                **modified_health_info,
+            },
+        )
+        
+        # Verify that the response status code is 302 (Redirect) after successful submission
+        self.assertEqual(response.status_code, 302)
+
+        # Verify that the patient's general information is updated correctly in the database
+        updated_patient = patient_generalinfo.objects.get(pk=self.patient.pk)
+        self.assertEqual(updated_patient.first_name, modified_general_info["first_name"])
+        self.assertEqual(updated_patient.last_name, modified_general_info["last_name"])
+        self.assertEqual(updated_patient.age, modified_general_info["age"])
+        self.assertEqual(updated_patient.gender, modified_general_info["gender"])
+        self.assertEqual(updated_patient.phone_number, modified_general_info["phone_number"])
+        self.assertEqual(updated_patient.email, modified_general_info["email"])
+        self.assertEqual(updated_patient.address, modified_general_info["address"])
+        
+        # Verify that the patient's health information is updated correctly in the database
+        updated_health_info = patient_healthinfo.objects.get(patient=self.patient)
+        self.assertEqual(updated_health_info.blood_group, modified_health_info["blood_group"])
+        self.assertEqual(updated_health_info.height, modified_health_info["height"])
+        self.assertEqual(updated_health_info.weight, modified_health_info["weight"])
+        self.assertEqual(updated_health_info.blood_pressure, modified_health_info["blood_pressure"])
+        self.assertEqual(updated_health_info.symptoms, modified_health_info["symptoms"])
+        self.assertEqual(updated_health_info.disease, modified_health_info["disease"])
+        self.assertEqual(updated_health_info.treatment, modified_health_info["treatment"])
+        self.assertEqual(
+            updated_health_info.diagnosis_date.strftime("%Y-%m-%d"),
+            modified_health_info["diagnosis_date"],
+        )
+        self.assertEqual(updated_health_info.doctor_name, modified_health_info["doctor_name"])
+        # Verify that the updated patient is listed on the home page
+        # Get the URL for the home page
+        url = reverse("home")
+        
+        # Send a GET request to retrieve the home page
+        response = self.client.get(url)
+        
+        # Verify that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
+        # Check that the updated patient's first name and last name are in the response
+        self.assertContains(response, modified_general_info["first_name"])
+        self.assertContains(response, modified_general_info["last_name"])
+
+
+        
+
 
 
        
