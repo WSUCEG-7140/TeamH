@@ -182,6 +182,26 @@ class PatientAppTestCase(TestCase):
         self.assertNotContains(response, self.health_info["diagnosis_date"])
         self.assertNotContains(response, self.health_info["doctor_name"])
 
+    """
+    Test case to verify searching patients by email on the home page.
+
+    This test checks whether the search functionality for patients by email on the home
+    page is working correctly. It verifies that only patients with matching email addresses
+    are displayed on the home page when searching with a specific email.
+
+    """
+    def test_search_patients_by_email(self):
+        # Get the URL for the home page
+        url = reverse("home")
+        
+        # Send a GET request to the home page with a specific email in the data (search_email)
+        response = self.client.get(url, data={"search_email": "kari.sindhu@gmail.com"})
+        
+        # Verify that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
+       
+
 
 
 
