@@ -165,22 +165,22 @@ class PatientAppTestCase(TestCase):
         
         # Verify that the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
-        # Check that the deleted patient's first name and last name are no longer in the response
+        # Check that the deleted patient details
         self.assertNotContains(response, self.general_info["first_name"])
         self.assertNotContains(response, self.general_info["last_name"])
-        self.assertContains(response, self.general_info["age"])
-        self.assertContains(response, self.general_info["gender"])
-        self.assertContains(response, self.general_info["phone_number"])
-        self.assertContains(response, self.general_info["email"])
-        self.assertContains(response, self.general_info["address"])
-        self.assertContains(response, self.health_info["blood_group"])
-        self.assertContains(response, self.health_info["height"])
-        self.assertContains(response, self.health_info["blood_pressure"])
-        self.assertContains(response, self.health_info["symptoms"])
-        self.assertContains(response, self.health_info["disease"])
-        self.assertContains(response, self.health_info["treatment"])
-        self.assertContains(response, self.health_info["diagnosis_date"])
-        self.assertContains(response, self.health_info["doctor_name"])
+        self.assertNotContains(response, self.general_info["age"])
+        self.assertNotContains(response, self.general_info["gender"])
+        self.assertNotContains(response, self.general_info["phone_number"])
+        self.assertNotContains(response, self.general_info["email"])
+        self.assertNotContains(response, self.general_info["address"])
+        self.assertNotContains(response, self.health_info["blood_group"])
+        self.assertNotContains(response, self.health_info["height"])
+        self.assertNotContains(response, self.health_info["blood_pressure"])
+        self.assertNotContains(response, self.health_info["symptoms"])
+        self.assertNotContains(response, self.health_info["disease"])
+        self.assertNotContains(response, self.health_info["treatment"])
+        self.assertNotContains(response, self.health_info["diagnosis_date"])
+        self.assertNotContains(response, self.health_info["doctor_name"])
 
 
 
