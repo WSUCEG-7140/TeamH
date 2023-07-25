@@ -214,6 +214,7 @@ class PatientAppTestCase(TestCase):
         # email does not match the search criteria
         self.assertNotContains(response, self.general_info["first_name"])
         self.assertNotContains(response, self.general_info["last_name"])
+
     """
     Test case to verify editing patient information.
 
@@ -274,6 +275,22 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(updated_patient.phone_number, modified_general_info["phone_number"])
         self.assertEqual(updated_patient.email, modified_general_info["email"])
         self.assertEqual(updated_patient.address, modified_general_info["address"])
+        
+        # Verify that the patient's health information is updated correctly in the database
+        updated_health_info = patient_healthinfo.objects.get(patient=self.patient)
+        self.assertEqual(updated_health_info.blood_group, modified_health_info["blood_group"])
+        self.assertEqual(updated_health_info.height, modified_health_info["height"])
+        self.assertEqual(updated_health_info.weight, modified_health_info["weight"])
+        self.assertEqual(updated_health_info.blood_pressure, modified_health_info["blood_pressure"])
+        self.assertEqual(updated_health_info.symptoms, modified_health_info["symptoms"])
+        self.assertEqual(updated_health_info.disease, modified_health_info["disease"])
+        self.assertEqual(updated_health_info.treatment, modified_health_info["treatment"])
+        self.assertEqual(
+            updated_health_info.diagnosis_date.strftime("%Y-%m-%d"),
+            modified_health_info["diagnosis_date"],
+        )
+        self.assertEqual(updated_health_info.doctor_name, modified_health_info["doctor_name"])
+
         
 
 
