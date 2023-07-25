@@ -230,7 +230,17 @@ class PatientAppTestCase(TestCase):
         response = self.client.get(url)
         
         # Verify that the page is accessible and the response status code is 200 (OK)
-        self.assertEqual(response.status_code, 200)    
+        self.assertEqual(response.status_code, 200)
+        # Prepare modified general information and health information for the patient
+        modified_general_info = {
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "age": 35,
+        "gender": "Female",
+        "phone_number": "9876543210",
+        "email": "jane.smith@example.com",
+        "address": "456 Elm St",
+    }    
 
 
 
