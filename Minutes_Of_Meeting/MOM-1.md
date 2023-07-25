@@ -1,9 +1,9 @@
 # Meeting Minutes 
 
-## 18 June 2023
+## 20 June 2023
 
 ## Opening:
-The Meeting was called to order at 4pm on June 18, 2023, via Webex
+The Meeting was called to order at 4pm on June 20, 2023, via Webex
 
 ## Attendees/Present:
 Sai Priya Botte 
@@ -38,6 +38,6 @@ I am looking on the testing in django application, next I will work on the testi
 
 
 ## Next Meeting Details:
-Next meeting will be on 25 June 2023 on Webex
+Next meeting will be on 27 June 2023 on Webex
 
 ## Minutes submitted by:  Sreeshma Bethi
