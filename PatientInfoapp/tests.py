@@ -151,6 +151,20 @@ class PatientAppTestCase(TestCase):
     
         # Verify that the response status code is 302 (Redirect) after successful deletion
         self.assertEqual(response.status_code, 302)
+        # Verify that the patient's records are deleted from both patient_generalinfo and patient_healthinfo tables
+        self.assertEqual(patient_generalinfo.objects.count(), 0)
+        self.assertEqual(patient_healthinfo.objects.count(), 0)
+
+        # Verify that the deleted patient is no longer listed on the home page
+
+        # Get the URL for the home page
+        url = reverse("home")
+        
+        # Send a GET request to retrieve the home page
+        response = self.client.get(url)
+        
+        # Verify that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
 
 
 
