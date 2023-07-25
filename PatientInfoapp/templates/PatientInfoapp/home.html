@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -9,21 +10,26 @@
    
 </head>
 <body>
+<!-- Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'homelogo.png' %}" alt="logo" width="48">
                 </a>
+                <!-- Responsive navbar toggle button -->
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
+               <!-- Navbar links -->
                <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <!-- Home link -->
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Add Patient link -->
                         <a class="nav-link" href="{% url 'add_patient' %}">Add Patient</a>
                     </li>
                     <li class="nav-item">
@@ -34,9 +40,11 @@
             </div>
         </nav>
     </header>
+       <!-- Container for the main content -->
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <!-- Heading for Patient Records -->
                 <h1 class="head" style="margin-bottom: 1em">PATIENT RECORDS</h1>
             </div>
         </div>
@@ -54,6 +62,8 @@
             </div>
         </div>
     </div>
+
+     <!-- Table to Display Patient Records -->
     <div class="container">
         <table class="table">
             <thead>
@@ -71,6 +81,7 @@
             <tbody>
                 {% for patient in patients %}
                 <tr>
+                     <!-- Patient Information -->
                     <td class="clickable-row"><a href="{% url 'patient_detail' pk=patient.pk %}">{{ forloop.counter }}</a></td>
                     <td>{{ patient.first_name }}</td>
                     <td>{{ patient.last_name }}</td>
@@ -85,6 +96,7 @@
                     </td>
                 </tr>
                 {% empty %}
+                  <!-- Display message when no patients are found -->
                 <tr>
                     <td colspan="8">No patients found.</td>
                 </tr>

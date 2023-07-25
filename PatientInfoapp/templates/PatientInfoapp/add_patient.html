@@ -2,28 +2,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Page title -->
     <title>Patient Management System | Add Patient</title>
+       <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+      <!-- Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'homelogo.PNG' %}" alt="logo" width="48">
                 </a>
+                <!-- Responsive navbar toggle button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
+                            <!-- Home link -->
                             <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
+                         <!-- Add Patient link -->
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'add_patient' %}">Add Patient</a>
                         </li>
                         <li class="nav-item">
+                        <!-- Admin link -->
                             <a class="nav-link" href="/admin/">Admin</a>
                         </li>
                     </ul>
@@ -33,9 +41,11 @@
             </div>
         </nav>
     </header>
+    <!-- Container for the form -->
     <div class="container root">
         <div class="row justify-content-center">
             <div class="col-md-6">
+                <!-- Container for the form -->
                 <div class="form-container mt-2" style="border-radius:10px; background-color: rgba(128,128,128,0.05); padding: 2em">
                     <h1 class="head text-center">Add Patient</h1>
                     <form class="ml-3"  method="post">
@@ -48,7 +58,7 @@
             </div>
         </div>
     </div>
-
+    <!-- Bootstrap JavaScript bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
