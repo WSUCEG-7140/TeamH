@@ -304,6 +304,29 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, modified_general_info["first_name"])
         self.assertContains(response, modified_general_info["last_name"])
 
+    """
+    Test case to verify handling of an invalid form submission.
+
+    This test checks whether the form submission on the "add_patient" view handles
+    invalid data correctly and displays appropriate validation error messages.
+    """
+    def test_invalid_form_submission(self):
+    
+        # Get the URL for the "add_patient" view, which is used to add a new patient
+        url = reverse("add_patient")
+        
+        # Send a POST request with an empty form data, simulating an invalid submission
+        response = self.client.post(url, data={})
+        
+        # Verify that the response status code is 200 (OK), indicating a validation failure
+        self.assertEqual(response.status_code, 200)
+        # Check that appropriate error messages are displayed for the invalid fields
+
+        # Assuming all fields are required, check if the response contains the error message
+        # "This field is required" for each invalid field
+        self.assertContains(response, "This field is required")
+
+
 
         
 
