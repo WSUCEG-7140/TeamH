@@ -240,7 +240,31 @@ class PatientAppTestCase(TestCase):
         "phone_number": "9876543210",
         "email": "jane.smith@example.com",
         "address": "456 Elm St",
-    }    
+        }
+        modified_health_info = {
+        "blood_group": "B+",
+        "height": 170,
+        "weight": 65,
+        "blood_pressure": "130/85",
+        "symptoms": "Cough, sore throat",
+        "disease": "Flu",
+        "treatment": "Medication",
+        "diagnosis_date": "2023-07-11",
+        "doctor_name": "Dr. Johnson",
+        }
+
+        # Send a POST request with the modified information to update the patient's record
+        response = self.client.post(
+            url,
+            data={
+                **modified_general_info,
+                **modified_health_info,
+            },
+        )
+        
+        # Verify that the response status code is 302 (Redirect) after successful submission
+        self.assertEqual(response.status_code, 302)
+        
 
 
 
