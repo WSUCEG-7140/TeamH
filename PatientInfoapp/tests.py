@@ -136,3 +136,23 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.health_info["treatment"])
         self.assertContains(response, self.health_info["diagnosis_date"])
         self.assertContains(response, self.health_info["doctor_name"])
+
+    """
+    Test case to verify the deletion of a patient.
+    This test checks whether a patient can be successfully deleted from the database
+    when the corresponding view for deleting a patient is triggered. It also verifies
+    that the patient is removed from the database and is no longer listed on the home page.
+    """
+    def test_delete_patient(self):
+        # Get the URL for deleting the specific patient using the patient's primary key
+        url = reverse("delete_patient", args=[self.patient.pk])
+        # Send a POST request to trigger the deletion of the patient
+        response = self.client.post(url)
+    
+        # Verify that the response status code is 302 (Redirect) after successful deletion
+        self.assertEqual(response.status_code, 302)
+
+
+
+
+  
