@@ -2,6 +2,14 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import patient_generalinfo, patient_healthinfo
 
+"""
+Test case class for testing the PatientInfoapp application.
+
+    This test case class contains test methods to verify the behavior and functionality of the
+    patient_generalinfo and patient_healthinfo models in the PatientInfoapp application. It sets
+    up test data for patient_generalinfo and patient_healthinfo models and tests their creation,
+    data retrieval, and linkage between the models.
+"""
 #This class includes all the test methods
 class PatientAppTestCase(TestCase):
     def setUp(self):
@@ -56,7 +64,16 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(self.health.treatment, 'take rest')
         self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
         self.assertEqual(self.health.doctor_name, 'Dr. Srikanth') 
+    
+    """
+    Test the "add_patient".
 
+    This test method verifies the behavior of the "add_patient" view in the PatientInfoapp application.
+    It tests both GET and POST requests to the view and checks the response status code to ensure
+    successful rendering of the form (GET) and successful form submission (POST). Additionally, it
+    checks if the patient's information is correctly stored in the database and displayed on the
+    "patient_detail" page after successful form submission.
+    """
     def test_add_patient(self):
         # Get the URL for the "add_patient" view
         url = reverse("add_patient")
