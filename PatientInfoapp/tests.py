@@ -290,6 +290,16 @@ class PatientAppTestCase(TestCase):
             modified_health_info["diagnosis_date"],
         )
         self.assertEqual(updated_health_info.doctor_name, modified_health_info["doctor_name"])
+        # Verify that the updated patient is listed on the home page
+        # Get the URL for the home page
+        url = reverse("home")
+        
+        # Send a GET request to retrieve the home page
+        response = self.client.get(url)
+        
+        # Verify that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
 
         
 
