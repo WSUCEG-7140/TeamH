@@ -300,9 +300,9 @@ class PatientAppTestCase(TestCase):
         # Verify that the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
-          # Check that the updated patient's first name and last name are in the response
-          self.assertContains(response, modified_general_info["first_name"])
-          self.assertContains(response, modified_general_info["last_name"])
+        # Check that the updated patient's first name and last name are in the response
+        self.assertContains(response, modified_general_info["first_name"])
+        self.assertContains(response, modified_general_info["last_name"])
 
 
         
