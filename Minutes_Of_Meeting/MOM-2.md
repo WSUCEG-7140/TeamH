@@ -38,6 +38,6 @@ I have installed all the testing dependencies and will write the test case for t
 
 
 ## Next Meeting Details:
-Next meeting will be on 4 July 2023 on Webex
+Next meeting will be on 5 July 2023 on Webex
 
 ## Minutes submitted by:  Sreeshma Bethi

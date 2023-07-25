@@ -3,7 +3,7 @@
 ## 5 July 2023
 
 ## Opening:
-The Meeting was called to order at 4pm on June 11, 2023, via Webex
+The Meeting was called to order at 4pm on July 5, 2023, via Webex
 
 ## Attendees/Present:
 Sai Priya Botte 
@@ -38,6 +38,6 @@ Written the test case for testing the health information of the patient and star
 
 
 ## Next Meeting Details:
-Next meeting will be on 11 July 2023 on Webex
+Next meeting will be on 6 July 2023 on Webex
 
 ## Minutes submitted by:  Sreeshma Bethi

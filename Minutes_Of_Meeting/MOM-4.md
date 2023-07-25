@@ -1,9 +1,9 @@
 # Meeting Minutes 
 
-## 11 July 2023
+## 6 July 2023
 
 ## Opening:
-The Meeting was called to order at 4pm on June 18, 2023, via Webex
+The Meeting was called to order at 4pm on July 6, 2023, via Webex
 
 ## Attendees/Present:
 Sai Priya Botte 
@@ -38,6 +38,6 @@ Worked on update API end point and Now working on (Issue#23) testing of the upda
 
 
 ## Next Meeting Details:
-Next meeting will be on 18 July 2023 on Webex
+Next meeting will be on 10 July 2023 on Webex
 
 ## Minutes submitted by:  Sreeshma Bethi
