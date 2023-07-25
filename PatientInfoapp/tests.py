@@ -204,6 +204,18 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.general_info["first_name"])
         self.assertContains(response, self.general_info["last_name"])
 
+        # Send another GET request to the home page with a different email in the data (search_email)
+        response = self.client.get(url, data={"search_email": "jane.smith@example.com"})
+        
+        # Verify that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
+        # Verify that the response does not contain the first name and last name of patients whose
+        # email does not match the search criteria
+        self.assertNotContains(response, self.general_info["first_name"])
+        self.assertNotContains(response, self.general_info["last_name"])
+
+
 
        
 
