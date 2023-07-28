@@ -76,16 +76,14 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
         self.assertEqual(self.health.doctor_name, 'Dr. Srikanth') 
     
-    """
-    Test the "add_patient".
-
-    This test method verifies the behavior of the "add_patient" view in the PatientInfoapp application.
-    It tests both GET and POST requests to the view and checks the response status code to ensure
-    successful rendering of the form (GET) and successful form submission (POST). Additionally, it
-    checks if the patient's information is correctly stored in the database and displayed on the
-    "patient_detail" page after successful form submission.
-    """
     def test_add_patient(self):
+        """
+        @brief: Test the "add_patient" view.
+
+        @pre: None
+        @post: Adds a new patient to the database and verifies its information on the home page.
+        """
+
         # Get the URL for the "add_patient" view
         url = reverse("add_patient")
    
@@ -129,15 +127,14 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.health_info["treatment"])
         self.assertContains(response, self.health_info["diagnosis_date"])
         self.assertContains(response, self.health_info["doctor_name"])
-
-    
-    """
-    Test case to verify the view for displaying patient details.
-
-    This test checks whether the patient details view is accessible, and if the
-    patient's information is displayed correctly on the page.
-    """    
+  
     def test_view_patient_details(self):
+        """
+        @brief: Test case to verify the view for displaying patient details.
+
+        @pre: The patient_generalinfo and patient_healthinfo instances are created in the setUp method.
+        @post: Retrieves and verifies the patient's details on the patient_detail page.
+        """
         # Get the URL for viewing the details of a specific patient using the patient's primary key
         url = reverse("patient_detail", args=[self.patient.pk])
     
@@ -165,13 +162,13 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.health_info["diagnosis_date"])
         self.assertContains(response, self.health_info["doctor_name"])
 
-    """
-    Test case to verify the deletion of a patient.
-    This test checks whether a patient can be successfully deleted from the database
-    when the corresponding view for deleting a patient is triggered. It also verifies
-    that the patient is removed from the database and is no longer listed on the home page.
-    """
     def test_delete_patient(self):
+        """
+        @brief: Test case to verify the deletion of a patient.
+
+        @pre: The patient_generalinfo and patient_healthinfo instances are created in the setUp method.
+        @post: Deletes the patient from the database and verifies it is no longer listed on the home page.
+        """
         # Get the URL for deleting the specific patient using the patient's primary key
         url = reverse("delete_patient", args=[self.patient.pk])
         # Send a POST request to trigger the deletion of the patient
