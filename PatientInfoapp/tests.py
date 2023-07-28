@@ -4,16 +4,15 @@ from .models import patient_generalinfo, patient_healthinfo
 
 """
 Test case class for testing the PatientInfoapp application.
-
-    This test case class contains test methods to verify the behavior and functionality of the
-    patient_generalinfo and patient_healthinfo models in the PatientInfoapp application. It sets
-    up test data for patient_generalinfo and patient_healthinfo models and tests their creation,
-    data retrieval, and linkage between the models.
 """
-#This class includes all the test methods
 class PatientAppTestCase(TestCase):
     def setUp(self):
-        #Adding test data for patient_generalinfo model 
+        """
+        @brief: Set up test data for patient_generalinfo and patient_healthinfo models.
+
+        @pre: None
+        @post: Creates instances of patient_generalinfo and patient_healthinfo with test data.
+        """
         self.general_info = {
             "first_name": "Sindhu",
             "last_name": "Kari",
@@ -44,6 +43,12 @@ class PatientAppTestCase(TestCase):
 
     #test case for patient_generalinfo attributes    
     def test_patient_generalinfo(self):
+        """
+        @brief: Test case for patient_generalinfo attributes.
+
+        @pre: The patient_generalinfo instance is created in the setUp method.
+        @post: Asserts that the patient_generalinfo attributes match the test data.
+        """
         self.assertEqual(self.patient.first_name, 'Sindhu')
         self.assertEqual(self.patient.last_name, 'Kari')
         self.assertEqual(self.patient.age, 20)
@@ -54,6 +59,12 @@ class PatientAppTestCase(TestCase):
 
     #test case for patient_healthinfo attributes
     def test_patient_healthinfo(self):
+        """
+        @brief: Test case for patient_healthinfo attributes.
+
+        @pre: The patient_healthinfo instance is created in the setUp method.
+        @post: Asserts that the patient_healthinfo attributes match the test data.
+        """
         self.assertEqual(self.health.patient, self.patient)
         self.assertEqual(self.health.blood_group, 'O+')
         self.assertEqual(self.health.height, 175)
