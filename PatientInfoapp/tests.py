@@ -43,7 +43,7 @@ class PatientAppTestCase(TestCase):
 
     #test case for patient_generalinfo attributes    
     def test_patient_generalinfo(self):
-         """
+        """
         @brief: Test case for patient_generalinfo attributes.
 
         @pre: The patient_generalinfo instance is created in the setUp method.
