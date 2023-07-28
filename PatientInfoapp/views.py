@@ -4,46 +4,36 @@ from .models import patient_generalinfo, patient_healthinfo
 from .forms import GeneralInfoForm, HealthInfoForm
 from django.db.models import Q
 
-"""
-    Display detailed information of a specific patient.
-
-    This view retrieves the patient_generalinfo instance corresponding to the provided
-    primary key (pk) from the database and renders the "patientInfoapp/patient_detail.html"
-    template. The detailed patient information is passed to the template as the context.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object representing the user's request.
-        pk (int): The primary key of the patient_generalinfo instance to be displayed.
-
-    Returns:
-        HttpResponse: A rendered HTML response displaying the detailed patient information.
-                      If the patient with the specified primary key does not exist in the
-                      database, a 404 Not Found response will be returned.
-"""
+""" @ref R27_0"""
 def patient_detail(request, pk):
+    """
+    @brief Display detailed information of a specific patient.
+    @param request: The HTTP request object representing the user's request.
+    @param pk: The primary key of the patient_generalinfo instance to be displayed.
+    @return: A rendered HTML response displaying the detailed patient information.
+    @pre: The database connection must be established and valid.
+    @post: The patient_generalinfo instance corresponding to the provided primary key (pk) is retrieved
+        from the database and rendered in the "patientInfoapp/patient_detail.html" template.
+    """
+
     ##Get the patient_generalinfo instance based on the provided primary key(pk)
     patient = get_object_or_404(patient_generalinfo, pk=pk)
 
     ##Render "patientInfoapp/patient_detail.html" template, by passing patient as context
     return render(request, "PatientInfoapp/patient_detail.html", {"patient":patient})
 
-"""
-    Display a list of patients with an optional search functionality.
-
-    This view retrieves a list of patient_generalinfo objects and allows users to search for
-    specific patients based on their email addresses. If the "search_email" parameter is provided
-    in the request's GET parameters, the view will filter the patient_generalinfo objects based on
-    email addresses containing the search_email value. If "search_email" is not provided, the view
-    will fetch all patient_generalinfo objects.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object representing the user's request.
-
-    Returns:
-        HttpResponse: A rendered HTML response displaying the list of patients or the search
-                      results if a search query is provided.
-"""
+""" @ref R6_0"""
 def home(request):
+    """
+    @brief Display a list of patients with an optional search functionality.
+    @param request: The HTTP request object representing the user's request.
+    @return: A rendered HTML response displaying the list of patients or the search results if a search query is provided.
+    @pre: The database connection must be established and valid.
+    @post: The patient_generalinfo objects are retrieved from the database and rendered in the
+        "PatientInfoapp/home.html" template. If a search query is provided, the list is filtered
+        based on email addresses containing the search_email value.
+    """
+
     # Retrieve the value of "search_email" parameter from the request's GET parameters
     search_email = request.GET.get("search_email")
     # Check if a search_email value is provided
@@ -56,25 +46,19 @@ def home(request):
     # Render the "home.html" template with the patients queryset as context data
     return render(request, "PatientInfoapp/home.html", {"patients": patients})
 
-"""
-    Display a form to add a new patient and process the form submission.
-
-    This view allows users to add a new patient to the system by presenting a form that collects
-    both general information (e.g., name, age, gender) and health-related information (e.g., blood
-    group, height, weight) of the patient. The view handles both displaying the form to the user
-    and processing the form submission.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object representing the user's request.
-
-    Returns:
-        HttpResponse: If the request method is POST and the submitted form data is valid,
-                      the view will create new patient_generalinfo and patient_healthinfo
-                      instances in the database and redirect the user to the "home" page.
-                      Otherwise, it will render the "PatientInfoapp/add_patient.html" template
-                      with the forms to display the form to the user.
-"""
+""" @ref R4_0"""
 def add_patient(request):
+    """
+    @brief Display a form to add a new patient and process the form submission.
+    @param request: The HTTP request object representing the user's request.
+    @return: If the request method is POST and the submitted form data is valid, the view will create new
+            patient_generalinfo and patient_healthinfo instances in the database and redirect the user to the "home" page.
+            Otherwise, it will render the "PatientInfoapp/add_patient.html" template with the forms to display the form to the user.
+    @pre: The database connection must be established and valid.
+    @post: If the form data is valid and the request method is POST, a new patient_generalinfo instance and a related
+        patient_healthinfo instance are created in the database with the submitted data. The user is redirected to the "home" page
+        to display the updated list of patients.
+    """
     if request.method == "POST":
          # Initialize GeneralInfoForm with POST data
         general_form = GeneralInfoForm(request.POST)
@@ -98,26 +82,22 @@ def add_patient(request):
             {"general_form": general_form, "health_form": health_form},
     )
 
-"""
-    Display a form to edit patient information and process the form submission.
-
-    This view allows users to edit existing patient information by presenting a form that contains
-    both the general information (e.g., name, age, gender) and health-related information (e.g.,
-    blood group, height, weight) of the patient. The view handles both displaying the form with the
-    existing data and processing the form submission when the user submits the edited information.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object representing the user's request.
-        pk (int): The primary key of the patient_generalinfo object to be edited.
-
-    Returns:
-        HttpResponse: If the request method is POST and the submitted form data is valid, the view
-                      will update the patient_generalinfo and patient_healthinfo instances in the
-                      database and redirect the user to the "home" page. Otherwise, it will render
-                      the "PatientInfoapp/edit_patient.html" template with the forms containing the
-                      existing patient information to display the form to the user.
-"""
+""" @ref R5_0"""
 def edit_patient(request, pk):
+    """
+    @brief Display a form to edit patient information and process the form submission.
+    @param request: The HTTP request object representing the user's request.
+    @param pk: The primary key of the patient_generalinfo object to be edited.
+    @return: If the request method is POST and the submitted form data is valid, the view will update the
+            patient_generalinfo and patient_healthinfo instances in the database and redirect the user to the "home" page.
+            Otherwise, it will render the "PatientInfoapp/edit_patient.html" template with the forms containing the
+            existing patient information to display the form to the user.
+    @pre: The database connection must be established and valid.
+    @post: If the form data is valid and the request method is POST, the patient_generalinfo instance and its related
+        patient_healthinfo instance are updated in the database with the edited data. The user is redirected to the "home" page
+        to display the updated list of patients.
+    """
+
     # Retrieve the patient_generalinfo object with the given pk (primary key)
     patient = patient_generalinfo.objects.get(pk=pk)
     
@@ -149,25 +129,17 @@ def edit_patient(request, pk):
         "PatientInfoapp/edit_patient.html",
         {"general_form": general_form, "health_form": health_form, "patient": patient},
     )
-
-
-"""
-    Delete a patient from the database.
-
-    This view allows users to delete an existing patient from the database. When the view is
-    accessed, it retrieves the patient_generalinfo object with the given primary key (pk) from
-    the database and then deletes it. After successful deletion, the user is redirected to the
-    "home" view, displaying the updated list of patients.
-
-    Parameters:
-        request (HttpRequest): The HTTP request object representing the user's request.
-        pk (int): The primary key of the patient_generalinfo object to be deleted.
-
-    Returns:
-        HttpResponseRedirect: Upon successful deletion, the view redirects the user to the
-                                 "home" view to display the updated list of patients.
-"""
+""" @ref R7_0"""
 def delete_patient(request, pk):
+    """
+    @brief Delete a patient from the database.
+    @param request: The HTTP request object representing the user's request.
+    @param pk: The primary key of the patient_generalinfo object to be deleted.
+    @return: Upon successful deletion, the view redirects the user to the "home" view to display the updated list of patients.
+    @pre: The database connection must be established and valid.
+    @post: The patient_generalinfo instance corresponding to the provided primary key (pk) is deleted from the database.
+    """
+
     # Retrieve the patient_generalinfo object with the given pk (primary key)
     patient = patient_generalinfo.objects.get(pk=pk)
     
