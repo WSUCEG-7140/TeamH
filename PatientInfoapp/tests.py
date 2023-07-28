@@ -207,15 +207,13 @@ class PatientAppTestCase(TestCase):
         self.assertNotContains(response, self.health_info["diagnosis_date"])
         self.assertNotContains(response, self.health_info["doctor_name"])
 
-    """
-    Test case to verify searching patients by email on the home page.
-
-    This test checks whether the search functionality for patients by email on the home
-    page is working correctly. It verifies that only patients with matching email addresses
-    are displayed on the home page when searching with a specific email.
-
-    """
     def test_search_patients_by_email(self):
+        """
+        @brief: Test case to verify searching patients by email on the home page.
+
+        @pre: The patient_generalinfo and patient_healthinfo instances are created in the setUp method.
+        @post: Searches and verifies that only patients with matching emails are displayed on the home page.
+        """
         # Get the URL for the home page
         url = reverse("home")
         
@@ -240,15 +238,14 @@ class PatientAppTestCase(TestCase):
         self.assertNotContains(response, self.general_info["first_name"])
         self.assertNotContains(response, self.general_info["last_name"])
 
-    """
-    Test case to verify editing patient information.
-
-    This test checks whether the process of editing a patient's information is functioning correctly.
-    It verifies that the edit page is accessible, the form submission results in a successful redirect,
-    and the patient's details are updated correctly in the database. Additionally, it ensures that the
-    updated patient's information is reflected on the home page.
-    """
     def test_edit_patient(self):
+        """
+        @brief: Test case to verify editing patient information.
+
+        @pre: The patient_generalinfo and patient_healthinfo instances are created in the setUp method.
+        @post: Edits the patient's information, updates the database, and verifies changes on the home page.
+        """
+
         # Get the URL for editing the specific patient using the patient's primary key
         url = reverse("edit_patient", args=[self.patient.pk])
         
@@ -329,13 +326,13 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, modified_general_info["first_name"])
         self.assertContains(response, modified_general_info["last_name"])
 
-    """
-    Test case to verify handling of an invalid form submission.
-
-    This test checks whether the form submission on the "add_patient" view handles
-    invalid data correctly and displays appropriate validation error messages.
-    """
     def test_invalid_form_submission(self):
+        """
+        @brief: Test case to verify handling of an invalid form submission.
+
+        @pre: None
+        @post: Simulates an invalid form submission and verifies the correct error messages are displayed.
+        """
     
         # Get the URL for the "add_patient" view, which is used to add a new patient
         url = reverse("add_patient")
