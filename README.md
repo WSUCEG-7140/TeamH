@@ -1,4 +1,4 @@
-# README
+# README.md
 # Patient Record Management System
 
 Patient Record Management System developed using Django Framework and Html for frontend. This application is used to manage patient health records in the hospital.
