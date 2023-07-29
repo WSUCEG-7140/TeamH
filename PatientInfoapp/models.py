@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+""" @ref R3_0"""
 class patient_generalinfo(models.Model):
     
     """
@@ -29,6 +29,7 @@ class patient_generalinfo(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=200)
 
+""" @ref R3_0"""
 class patient_healthinfo(models.Model):
 
     """

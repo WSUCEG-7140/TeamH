@@ -1,6 +1,7 @@
 from django import forms
 from .models import patient_generalinfo, patient_healthinfo
 
+""" @ref R30_0"""
 class GeneralInfoForm(forms.ModelForm):
 
     """
@@ -28,6 +29,7 @@ class GeneralInfoForm(forms.ModelForm):
             "address",
         ]
 
+""" @ref R30_0"""
 class HealthInfoForm(forms.ModelForm):
 
     """

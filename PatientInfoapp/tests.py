@@ -41,7 +41,7 @@ class PatientAppTestCase(TestCase):
         #creating an instance for patient_healthinfo model by using above test data
         self.health = patient_healthinfo.objects.create(**self.health_info)
 
-    #test case for patient_generalinfo attributes    
+    """ @ref R23_0"""       
     def test_patient_generalinfo(self):
         """
         @brief: Test case for patient_generalinfo attributes.
@@ -57,7 +57,7 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(self.patient.email, 'kari.sindhu@gmail.com')
         self.assertEqual(self.patient.address, 'Province,Cloveridge ct.')   
 
-    #test case for patient_healthinfo attributes
+    """ @ref R24_0"""
     def test_patient_healthinfo(self):
         """
         @brief: Test case for patient_healthinfo attributes.
@@ -76,6 +76,7 @@ class PatientAppTestCase(TestCase):
         self.assertEqual(str(self.health.diagnosis_date), '2023-07-11')
         self.assertEqual(self.health.doctor_name, 'Dr. Srikanth') 
     
+    """ @ref R34_0"""
     def test_add_patient(self):
         """
         @brief: Test the "add_patient" view.
@@ -128,6 +129,7 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.health_info["diagnosis_date"])
         self.assertContains(response, self.health_info["doctor_name"])
   
+    """ @ref R37_0"""
     def test_view_patient_details(self):
         """
         @brief: Test case to verify the view for displaying patient details.
@@ -162,6 +164,7 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, self.health_info["diagnosis_date"])
         self.assertContains(response, self.health_info["doctor_name"])
 
+    """ @ref R38_0"""
     def test_delete_patient(self):
         """
         @brief: Test case to verify the deletion of a patient.
@@ -207,6 +210,7 @@ class PatientAppTestCase(TestCase):
         self.assertNotContains(response, self.health_info["diagnosis_date"])
         self.assertNotContains(response, self.health_info["doctor_name"])
 
+    """ @ref R36_0"""
     def test_search_patients_by_email(self):
         """
         @brief: Test case to verify searching patients by email on the home page.
@@ -238,6 +242,7 @@ class PatientAppTestCase(TestCase):
         self.assertNotContains(response, self.general_info["first_name"])
         self.assertNotContains(response, self.general_info["last_name"])
 
+    """ @ref R35_0"""
     def test_edit_patient(self):
         """
         @brief: Test case to verify editing patient information.
@@ -326,6 +331,7 @@ class PatientAppTestCase(TestCase):
         self.assertContains(response, modified_general_info["first_name"])
         self.assertContains(response, modified_general_info["last_name"])
 
+    """ @ref R39_0"""
     def test_invalid_form_submission(self):
         """
         @brief: Test case to verify handling of an invalid form submission.
